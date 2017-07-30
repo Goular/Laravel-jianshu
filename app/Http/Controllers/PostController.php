@@ -21,7 +21,7 @@ class PostController extends Controller
     //创建页面
     public function create()
     {
-
+        return view('post/create');
     }
 
     //创建逻辑
@@ -33,7 +33,7 @@ class PostController extends Controller
     //编译页面
     public function edit()
     {
-
+        return view('post/edit');
     }
 
     //编译逻辑
