@@ -15,7 +15,7 @@ class PostController extends Controller
     //详情页面
     public function show()
     {
-
+        return view('post/show');
     }
 
     //创建页面
