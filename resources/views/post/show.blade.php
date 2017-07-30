@@ -80,13 +80,16 @@
         <div class="col-sm-8 blog-main">
             <div class="blog-post">
                 <div style="display:inline-flex">
-                    <h2 class="blog-post-title">你好你好</h2>
+                    <h2 class="blog-post-title">{{$title}}</h2>
+                    @if($isShow == true)
                     <a style="margin: auto"  href="/posts/62/edit">
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                     </a>
+                    @else
                     <a style="margin: auto"  href="/posts/62/delete">
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </a>
+                    @endif
                 </div>
 
                 <p class="blog-post-meta">May 14, 2017 by <a href="#">Kassandra Ankunding2</a></p>

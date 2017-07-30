@@ -9,13 +9,23 @@ class PostController extends Controller
     //列表
     public function index()
     {
-        return view('post/index');
+        $posts = array(
+            ['title' => '这是标题001'],
+            ['title' => '这是标题011'],
+            ['title' => '这是标题111'],
+            ['title' => '这是标题002'],
+            ['title' => '这是标题022'],
+            ['title' => '这是标题222'],
+            ['title' => '这是标题003']
+        );
+        $topics = ['id' => '00897442'];
+        return view('post/index', compact('posts', 'topics'));
     }
 
     //详情页面
     public function show()
     {
-        return view('post/show');
+        return view('post/show', ['title' => '这是标题1', 'isShow' => true]);
     }
 
     //创建页面
