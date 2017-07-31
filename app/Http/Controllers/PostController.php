@@ -29,7 +29,10 @@ class PostController extends Controller
     //创建逻辑
     public function store()
     {
-
+        //写入到数据表
+        $post = Post::create(request(['title', 'content']));
+        //转跳到消息列表的页面
+        return redirect("/posts");
     }
 
     //编译页面
