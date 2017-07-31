@@ -15,7 +15,7 @@
 
             <p class="blog-post-meta">{{$post->created_at->toFormattedDateString()}} by <a href="#">Kassandra Ankunding2</a></p>
             <p>
-                <p>{{$post->content}}</p>
+                <p>{!! $post->content !!}</p>
                 <p><br></p>
             </p>
             <div>
