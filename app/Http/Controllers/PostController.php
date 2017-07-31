@@ -15,9 +15,9 @@ class PostController extends Controller
     }
 
     //详情页面
-    public function show()
+    public function show(Post $post)
     {
-        return view('post/show', ['title' => '这是标题1', 'isShow' => true]);
+        return view('post/show', compact('post'));
     }
 
     //创建页面
