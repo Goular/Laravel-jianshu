@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -9,17 +10,8 @@ class PostController extends Controller
     //列表
     public function index()
     {
-        $posts = array(
-            ['title' => '这是标题001'],
-            ['title' => '这是标题011'],
-            ['title' => '这是标题111'],
-            ['title' => '这是标题002'],
-            ['title' => '这是标题022'],
-            ['title' => '这是标题222'],
-            ['title' => '这是标题003']
-        );
-        $topics = ['id' => '00897442'];
-        return view('post/index', compact('posts', 'topics'));
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        return view('post/index', compact('posts'));
     }
 
     //详情页面
