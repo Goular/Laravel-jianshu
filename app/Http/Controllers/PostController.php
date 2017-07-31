@@ -29,6 +29,11 @@ class PostController extends Controller
     //创建逻辑
     public function store()
     {
+        //验证
+        $this->validate(request(), array(
+            'title' => 'required|string|max:100|min:5',
+            'content' => 'required|string|min:10'
+        ));
         //写入到数据表
         $post = Post::create(request(['title', 'content']));
         //转跳到消息列表的页面
