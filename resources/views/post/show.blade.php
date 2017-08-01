@@ -8,7 +8,7 @@
                 <a style="margin: auto" href="/posts/{{$post->id}}/edit">
                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </a>
-                <a style="margin: auto" href="/posts/{{$post->id}}}/delete">
+                <a style="margin: auto" href="/posts/{{$post->id}}/delete">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
             </div>

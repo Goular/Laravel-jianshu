@@ -27,7 +27,7 @@ Route::get('/posts/{post}/edit','\App\Http\Controllers\PostController@edit');
 Route::put('/posts/{post}','\App\Http\Controllers\PostController@update');
 
 //删除文章
-Route::get('/posts/delete','\App\Http\Controllers\PostController@delete');
+Route::get('/posts/{post}/delete','\App\Http\Controllers\PostController@delete');
 
 //文章详情
 Route::get('/posts/{post}','\App\Http\Controllers\PostController@show');
