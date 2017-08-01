@@ -57,4 +57,10 @@ class PostController extends Controller
     {
 
     }
+
+    //上传图片
+    public function imageUpload()
+    {
+        dd(request()->all());
+    }
 }

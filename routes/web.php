@@ -32,3 +32,6 @@ Route::get('/posts/delete','\App\Http\Controllers\PostController@delete');
 //文章详情
 Route::get('/posts/{post}','\App\Http\Controllers\PostController@show');
 //*********************************文章模块*********************************
+
+//图片上传接口
+Route::post('/posts/image/upload','\App\Http\Controllers\PostController@imageUpLoad');
