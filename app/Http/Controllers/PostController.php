@@ -41,15 +41,28 @@ class PostController extends Controller
     }
 
     //编译页面
-    public function edit()
+    public function edit(Post $post)
     {
-        return view('post/edit');
+        return view('post/edit', compact('post'));
     }
 
     //编译逻辑
-    public function update()
+    public function update(Post $post)
     {
+        //验证
+        $this->validate(request(), array(
+            'title' => 'required|string|max:100|min:5',
+            'content' => 'required|string|min:30'
+        ));
 
+        //逻辑
+        $post->title = request('title');
+        $post->content = request('content');
+        $post->save();
+
+
+        //渲染
+        return redirect("/posts/{$post->id}");
     }
 
     //删除逻辑
@@ -59,8 +72,9 @@ class PostController extends Controller
     }
 
     //上传图片
-    public function imageUpload()
+    public function imageUpload(Request $request)
     {
-        dd(request()->all());
+        $path = $request->file('wangEditorH5File')->storePublicly(md5(time()));
+        return asset('storage/' . $path);
     }
 }

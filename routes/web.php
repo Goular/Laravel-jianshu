@@ -24,7 +24,7 @@ Route::post('/posts','\App\Http\Controllers\PostController@store');
 
 //编辑文章
 Route::get('/posts/{post}/edit','\App\Http\Controllers\PostController@edit');
-Route::post('/posts/{post}','\App\Http\Controllers\PostController@update');
+Route::put('/posts/{post}','\App\Http\Controllers\PostController@update');
 
 //删除文章
 Route::get('/posts/delete','\App\Http\Controllers\PostController@delete');
