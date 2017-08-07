@@ -8,8 +8,17 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     //列表
-    public function index()
+    public function index(\Psr\Log\LoggerInterface $log)
     {
+//        $app = app();//获取容器
+//        $log = $app->make('log');//获取容器类
+//        $log->info("post_index",['data'=>"this is post index!"]);
+
+//        $log->info("post_index",['data'=>"this is post index2!"]);
+
+        //使用别名
+        \Log::info("post_index",['data'=>"this is post index3!"]);
+
         $posts = Post::orderBy('created_at', 'desc')->paginate(6);
         return view('post/index', compact('posts'));
     }
