@@ -43,8 +43,12 @@ class PostController extends Controller
             'title' => 'required|string|max:100|min:5',
             'content' => 'required|string|min:10'
         ));
+
+        //逻辑
+        $user_id = \Auth::id();
+        $params = array_merge(request(['title','content']),compact('user_id'));
         //写入到数据表
-        $post = Post::create(request(['title', 'content']));
+        $post = Post::create($params);
         //转跳到消息列表的页面
         return redirect("/posts");
     }
