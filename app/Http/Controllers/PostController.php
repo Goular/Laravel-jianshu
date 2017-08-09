@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Comment;
 use App\Post;
+use App\Zan;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -20,7 +21,7 @@ class PostController extends Controller
         //使用别名
 //        \Log::info("post_index", ['data' => "this is post index3!"]);
 
-        $posts = Post::orderBy('created_at', 'desc')->withCount('comments')->paginate(6);
+        $posts = Post::orderBy('created_at', 'desc')->withCount(['comments','zans'])->paginate(6);
         return view('post/index', compact('posts'));
     }
 
@@ -113,6 +114,24 @@ class PostController extends Controller
         $post->comments()->save($comment);
 
         //渲染
+        return back();
+    }
+
+    //点赞
+    public function zan(Post $post)
+    {
+        $params = [
+            'user_id' => \Auth::id(),
+            'post_id' => $post->id
+        ];
+        $zan = Zan::firstOrCreate($params);
+        return back();
+    }
+
+    //取消点赞
+    public function unzan(Post $post)
+    {
+        $post->zan(\Auth::id())->delete();
         return back();
     }
 }
