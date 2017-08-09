@@ -18,9 +18,9 @@ class PostController extends Controller
 //        $log->info("post_index",['data'=>"this is post index2!"]);
 
         //使用别名
-        \Log::info("post_index", ['data' => "this is post index3!"]);
+//        \Log::info("post_index", ['data' => "this is post index3!"]);
 
-        $posts = Post::orderBy('created_at', 'desc')->paginate(6);
+        $posts = Post::orderBy('created_at', 'desc')->withCount('comments')->paginate(6);
         return view('post/index', compact('posts'));
     }
 
