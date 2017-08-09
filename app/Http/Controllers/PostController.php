@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class PostController extends Controller
 //        $log->info("post_index",['data'=>"this is post index2!"]);
 
         //使用别名
-        \Log::info("post_index",['data'=>"this is post index3!"]);
+        \Log::info("post_index", ['data' => "this is post index3!"]);
 
         $posts = Post::orderBy('created_at', 'desc')->paginate(6);
         return view('post/index', compact('posts'));
@@ -26,6 +27,7 @@ class PostController extends Controller
     //详情页面
     public function show(Post $post)
     {
+        $post->load('comments');
         return view('post/show', compact('post'));
     }
 
@@ -46,7 +48,7 @@ class PostController extends Controller
 
         //逻辑
         $user_id = \Auth::id();
-        $params = array_merge(request(['title','content']),compact('user_id'));
+        $params = array_merge(request(['title', 'content']), compact('user_id'));
         //写入到数据表
         $post = Post::create($params);
         //转跳到消息列表的页面
@@ -68,7 +70,7 @@ class PostController extends Controller
             'content' => 'required|string|min:30'
         ));
 
-        $this->authorize('update',$post);
+        $this->authorize('update', $post);
 
         //逻辑
         $post->title = request('title');
@@ -84,7 +86,7 @@ class PostController extends Controller
     public function delete(Post $post)
     {
         // TODO:用户的权限体验
-        $this->authorize('delete',$post);
+        $this->authorize('delete', $post);
         $post->delete();
         return redirect('posts');
     }
@@ -94,5 +96,23 @@ class PostController extends Controller
     {
         $path = $request->file('wangEditorH5File')->storePublicly(md5(time()));
         return asset('storage/' . $path);
+    }
+
+    //提交评论
+    public function comment(Post $post)
+    {
+        //校验数据
+        $this->validate(request(), [
+            'content' => 'required|min:3'
+        ]);
+
+        //逻辑处理
+        $comment = new Comment();
+        $comment->user_id = \Auth::id();
+        $comment->content = request('content');
+        $post->comments()->save($comment);
+
+        //渲染
+        return back();
     }
 }

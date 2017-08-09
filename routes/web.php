@@ -59,4 +59,7 @@ Route::get('/user/me/setting','\App\Http\Controllers\UserController@setting');
 //个人设置操作
 Route::post('/user/me/setting','\App\Http\Controllers\UserController@settingStore');
 
+//提交评论
+Route::post('/posts/{post}/comment','\App\Http\Controllers\PostController@comment');
+
 //*********************************用户模块*********************************
