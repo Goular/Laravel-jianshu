@@ -69,4 +69,10 @@ Route::post('/posts/{post}/comment','\App\Http\Controllers\PostController@commen
 Route::get('/posts/{post}/zan','\App\Http\Controllers\PostController@zan');
 //取消点赞
 Route::get('/posts/{post}/unzan','\App\Http\Controllers\PostController@unzan');
+
+//个人中心
+Route::get('/user/{user}','\App\Http\Controllers\UserController@show');
+Route::post('/user/{user}/fan','\App\Http\Controllers\UserController@fan');
+Route::post('/user/{user}/unfan','\App\Http\Controllers\UserController@unfan');
+
 //*********************************用户模块*********************************

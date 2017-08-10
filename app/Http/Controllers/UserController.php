@@ -7,12 +7,29 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //个人设置页面
-    public function setting(){
+    public function setting()
+    {
         return view('user/setting');
     }
 
     //个人设置行为
-    public function settingStore(){
+    public function settingStore(Request $request)
+    {
+    }
 
+    //个人中心显示页面
+    public function show()
+    {
+        return;
+    }
+
+    //关注用户
+    public function fan(){
+        return;
+    }
+
+    //取消关注
+    public function unfan(){
+        return;
     }
 }
