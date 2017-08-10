@@ -29,6 +29,9 @@ Route::put('/posts/{post}','\App\Http\Controllers\PostController@update');
 //删除文章
 Route::get('/posts/{post}/delete','\App\Http\Controllers\PostController@delete');
 
+//搜索文章
+Route::get('/posts/search','\App\Http\Controllers\PostController@search');
+
 //文章详情
 Route::get('/posts/{post}','\App\Http\Controllers\PostController@show');
 //*********************************文章模块*********************************

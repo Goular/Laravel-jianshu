@@ -27,6 +27,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 //添加文章的自动工厂方法
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     return [
+        'user_id' => 1,
         'title' => $faker->sentence(6),
         'content' => $faker->paragraph(10)
     ];
