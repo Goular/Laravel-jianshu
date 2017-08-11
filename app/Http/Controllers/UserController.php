@@ -36,18 +36,28 @@ class UserController extends Controller
         $fusers = User::whereIn('id', $fans->pluck('fan_id'))->withCount(['stars', 'fans', 'posts'])->get();
 
 
-        return view('user/show', compact('user','posts', 'susers', 'fusers'));
+        return view('user/show', compact('user', 'posts', 'susers', 'fusers'));
     }
 
     //关注用户
-    public function fan()
+    public function fan(User $user)
     {
-        return;
+        $me = \Auth::user();
+        $me->doFan($user->id);
+        return [
+            'error' => 0,
+            'msg' => ''
+        ];
     }
 
     //取消关注
-    public function unfan()
+    public function unfan(User $user)
     {
-        return;
+        $me = \Auth::user();
+        $me->doUnFan($user->id);
+        return [
+            'error' => 0,
+            'msg' => ''
+        ];
     }
 }
