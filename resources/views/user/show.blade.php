@@ -22,10 +22,8 @@
                     <div class="blog-post" style="margin-top: 30px">
                         <p class=""><a style="margin-right: 12px;" href="/user/{{$post->user_id}}">{{$post->user->name}}</a>{{$post->created_at->diffForHumans()}}</p>
                         <p class=""><a href="/posts/{{$post->id}}">{{$post->title}}</a></p>
-
-
                         <p>
-                        <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好...</p>
+                        <p>{!!str_limit($post->content, 100, '...')!!}</p>
                     </div>
                     @endforeach
 

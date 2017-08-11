@@ -29,14 +29,16 @@ class PostController extends Controller
     //详情页面
     public function show(Post $post)
     {
+        $user = \Auth::user();
         $post->load('comments');
-        return view('post/show', compact('post'));
+        return view('post/show', compact('post','user'));
     }
 
     //创建页面
     public function create()
     {
-        return view('post/create');
+        $user = \Auth::user();
+        return view('post/create',compact('user'));
     }
 
     //创建逻辑
