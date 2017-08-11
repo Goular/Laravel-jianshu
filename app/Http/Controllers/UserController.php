@@ -60,4 +60,26 @@ class UserController extends Controller
             'msg' => ''
         ];
     }
+
+    //作为粉丝，被别人关注
+    public function star(User $user)
+    {
+        $me = \Auth::user();
+        $me->doStar($user->id);
+        return [
+            'error' => 0,
+            'msg' => ''
+        ];
+    }
+
+    //主动接触关注人物
+    public function unstar(User $user)
+    {
+        $me = \Auth::user();
+        $me->doUnStar($user->id);
+        return [
+            'error' => 0,
+            'msg' => ''
+        ];
+    }
 }

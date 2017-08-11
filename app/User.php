@@ -46,9 +46,25 @@ class User extends Authenticatable
     //取消关注
     public function doUnFan($user_id)
     {
+//        $fan = new \App\Fan();
+//        $fan->star_id = $user_id;
+        return $this->stars()->where('star_id',$user_id)->where('fan_id',\Auth::id())->delete();
+    }
+
+    //设置某人关注自己
+    public function doStar($user_id)
+    {
         $fan = new \App\Fan();
-        $fan->star_id = $user_id;
-        return $this->stars()->delete($fan);
+        $fan->fan_id = $user_id;
+        return $this->fans()->save($fan);
+    }
+
+    //取消某人关注自己
+    public function doUnStar($user_id)
+    {
+        $fan = new \App\Fan();
+        $fan->fan_id = $user_id;
+        return $this->fans()->delete($fan);
     }
 
     //判断当前用户是否被uid关注

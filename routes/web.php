@@ -74,5 +74,6 @@ Route::get('/posts/{post}/unzan','\App\Http\Controllers\PostController@unzan');
 Route::get('/user/{user}','\App\Http\Controllers\UserController@show');
 Route::post('/user/{user}/fan','\App\Http\Controllers\UserController@fan');
 Route::post('/user/{user}/unfan','\App\Http\Controllers\UserController@unfan');
-
+Route::post('/user/{user}/star','\App\Http\Controllers\UserController@star');
+Route::post('/user/{user}/unstar','\App\Http\Controllers\UserController@unstar');
 //*********************************用户模块*********************************

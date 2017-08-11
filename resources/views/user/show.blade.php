@@ -37,7 +37,7 @@
                             <p class="">{{$suser->name}}</p>
                             <p class="">关注：{{$suser->stars()->count()}} | 粉丝：{{$suser->fans()->count()}}
                                 ｜文章：{{$suser->posts()->count()}}</p>
-                            @include('user.badges.like',['target_user'=>$suser])
+                            @include('user.badges.like',['target_user'=>$suser,'m_type'=>'1'])
                         </div>
                     @endforeach
                 </div>
@@ -48,7 +48,7 @@
                             <p class="">{{$fuser->name}}</p>
                             <p class="">关注：{{$fuser->stars()->count()}} | 粉丝：{{$fuser->fans()->count()}}
                                 ｜文章：{{$fuser->posts()->count()}}</p>
-                            @include('user.badges.like',['target_user'=>$fuser])
+                            @include('user.badges.like',['target_user'=>$fuser,'m_type'=>'2'])
                         </div>
                     @endforeach
                 </div>

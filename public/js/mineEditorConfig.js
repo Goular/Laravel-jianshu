@@ -2,13 +2,20 @@ $(".like-button").click(function (event) {
     var target = $(event.target);
     var current_like = target.attr('like-value');
     var user_id = target.attr('like-user');
+    var type = target.attr('like-type');
+    var url = '';
     if (current_like == 1) {
+        if(type == 1){
+            url = '/user/' + user_id + "/unfan"
+        }else if(type == 2){
+            url = '/user/' + user_id + "/unstar"
+        }
         //取消关注
         $.ajax({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            url: '/user/' + user_id + "/unfan",
+            url: url,
             method: 'POST',
             dataType: 'json',
             success: function (data) {
@@ -21,6 +28,11 @@ $(".like-button").click(function (event) {
             }
         });
     } else {
+        if(type == 1){
+            url = '/user/' + user_id + "/fan"
+        }else if(type == 2){
+            url = '/user/' + user_id + "/star"
+        }
         //添加关注
         $.ajax({
             headers: {
