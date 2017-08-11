@@ -24,8 +24,5 @@
             @endif
         </div>
     @else
-
     @endif
-
-
 @endif
