@@ -1,14 +1,11 @@
-@extends('layout.main')
+@extends("layout.main")
 
-@section('content')
+@section("content")
     <div class="col-sm-8">
         <blockquote>
-            <p><img src="/storage/9f0b0809fd136c389c20f949baae3957/iBkvipBCiX6cHitZSdTaXydpen5PBiul7yYCc88O.jpeg" alt=""
-                    class="img-rounded" style="border-radius:500px; height: 40px"> Kassandra Ankunding2
-            </p>
-
-
-            <footer>关注：4｜粉丝：0｜文章：9</footer>
+            <p><img src="{{$user->avatar}}" alt="" class="img-rounded"
+                    style="border-radius:500px; height: 40px"> {{$user->name}}</p>
+            <footer>关注：{{$user->stars_count}}｜粉丝：{{$user->fans_count}}｜文章：{{$user->posts_count}}</footer>
         </blockquote>
     </div>
     <div class="col-sm-8 blog-main">
@@ -20,80 +17,23 @@
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1">
+                    <?php \Carbon\Carbon::setLocale('zh');?>
+                    @foreach($posts as $post)
                     <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 6天前</p>
-                        <p class=""><a href="/posts/62">你好你好</a></p>
+                        <p class=""><a style="margin-right: 12px;" href="/user/{{$post->user_id}}">{{$post->user->name}}</a>{{$post->created_at->diffForHumans()}}</p>
+                        <p class=""><a href="/posts/{{$post->id}}">{{$post->title}}</a></p>
 
 
                         <p>
                         <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好...</p>
                     </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 6天前</p>
-                        <p class=""><a href="/posts/61">你好你好</a></p>
+                    @endforeach
 
-
-                        <p>
-                        <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好...</p>
-                    </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 6天前</p>
-                        <p class=""><a href="/posts/60">你好你好</a></p>
-
-
-                        <p>
-                        <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好...</p>
-                    </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 6天前</p>
-                        <p class=""><a href="/posts/59">你好你好</a></p>
-
-
-                        <p>
-                        <p>你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好你好...</p>
-                    </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 1周前</p>
-                        <p class=""><a href="/posts/58">自动放大舒服的撒</a></p>
-
-
-                        <p>我们坚持一个中国我们坚持一个中国我们坚持一个中国我们坚持一个中国我们坚持一个中国我们坚持一个中国我们...</p>
-                    </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 1周前</p>
-                        <p class=""><a href="/posts/57">反对撒发的撒风反对撒发的撒风反对撒发的撒风</a></p>
-
-
-                        <p>反对撒发的撒风反对撒发的撒风反对撒发的撒风反对撒发的撒风反对撒发的撒风反对撒发的撒风反对撒发的撒风反...</p>
-                    </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 1周前</p>
-                        <p class=""><a href="/posts/56">dfdasfd</a></p>
-
-
-                        <p>vadfdasfdas vadfdasfdas vadfdasfdas vadfdasfdas vadfdasfdas vadfdasfdas vadfdasfdas
-                            vadfdasfdas vadf...</p>
-                    </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 1个月前</p>
-                        <p class=""><a href="/posts/55">32323</a></p>
-
-
-                        <p>232323232323232323232323232323232323232323232323232323
-                            232323232323232323232323
-                            232323232323232323...</p>
-                    </div>
-                    <div class="blog-post" style="margin-top: 30px">
-                        <p class=""><a href="/user/5">Kassandra Ankunding2</a> 1个月前</p>
-                        <p class=""><a href="/posts/54">dafdsafads</a></p>
-
-
-                        <p>dafdsafadsdafdsafadsdafdsafadsdafdsafads
-
-                            dafdsafadsdafdsafadsdafdsafadsdafdsafadsdafdsafadsdafdsa...</p>
-                    </div>
                 </div>
-                <!-- /.tab-pane -->
+
+
+
+
                 <div class="tab-pane" id="tab_2">
                     <div class="blog-post" style="margin-top: 30px">
                         <p class="">Jadyn Medhurst Jr.</p>
@@ -140,12 +80,19 @@
 
                     </div>
                 </div>
-                <!-- /.tab-pane -->
-                <div class="tab-pane" id="tab_3">
-                </div>
-                <!-- /.tab-pane -->
+
+
+
+
+                <div class="tab-pane" id="tab_3"></div>
+
+
+
+
             </div>
             <!-- /.tab-content -->
         </div>
+
+
     </div><!-- /.blog-main -->
 @endsection

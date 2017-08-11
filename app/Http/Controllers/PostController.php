@@ -21,8 +21,9 @@ class PostController extends Controller
         //使用别名
 //        \Log::info("post_index", ['data' => "this is post index3!"]);
 
+        $user = \Auth::user();
         $posts = Post::orderBy('created_at', 'desc')->withCount(['comments', 'zans'])->paginate(6);
-        return view('post/index', compact('posts'));
+        return view('post/index', compact('posts','user'));
     }
 
     //详情页面

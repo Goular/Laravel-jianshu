@@ -35,6 +35,7 @@ class UserController extends Controller
         $fans = $user->fans;
         $fusers = User::whereIn('id', $fans->pluck('fan_id'))->withCount(['stars', 'fans', 'posts'])->get();
 
+
         return view('user/show', compact('user','posts', 'susers', 'fusers'));
     }
 

@@ -16,13 +16,20 @@ class User extends Authenticatable
         return $this->hasMany(\App\Post::class, 'user_id', 'id');
     }
 
-    //关注我的Fans列表
+    /**
+     * 我的粉丝
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function fans()
     {
         return $this->hasMany(\App\Fan::class, 'star_id', 'id');
     }
 
-    //我关注的Stars列表
+
+    /**
+     * 我粉的人
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function stars()
     {
         return $this->hasMany(\App\Fan::class, 'fan_id', 'id');
