@@ -66,7 +66,7 @@ class Post extends Model
     }
 
     //不属于某个专题的文章
-    public function scopesTopicNotBy(Builder $query, $topic_id)
+    public function scopeTopicNotBy(Builder $query, $topic_id)
     {
         return $query->doesntHave('postTopics', 'and', function ($q) use ($topic_id) {
             $q->where('topic_id', $topic_id);
