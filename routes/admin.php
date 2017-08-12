@@ -6,4 +6,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/login', '\App\Admin\Controllers\LoginController@login');
     //登出行为
     Route::get('/logout', '\App\Admin\Controllers\LoginController@logout');
+
+    //首页
+    Route::get('/home', '\App\Admin\Controllers\HomeController@index');
 });
