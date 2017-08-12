@@ -83,3 +83,4 @@ Route::post('/user/{user}/unstar', '\App\Http\Controllers\UserController@unstar'
 Route::get('/topic/{topic}', '\App\Http\Controllers\TopicController@show');
 Route::post('/topic/{topic}/submit', '\App\Http\Controllers\TopicController@submit');
 //*********************************用户模块*********************************
+include_once('admin.php');
