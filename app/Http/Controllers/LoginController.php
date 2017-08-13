@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+    public function name()
+    {
+        return 'name';
+    }
+
     //登录页面
     public function index()
     {
@@ -32,6 +37,22 @@ class LoginController extends Controller
 
         //渲染
         return \Redirect::back()->withInput()->withErrors('邮箱密码不匹配!');
+
+
+//        $this->validate(request(), [
+//            'name' => 'required',
+//            'password' => 'required|min:5|max:10',
+//            'is_remember' => 'integer'
+//        ]);
+//
+//        $user = request(['name', 'password']);
+//        $is_remember = boolval(request('is_remmeber'));
+//        if (\Auth::attempt($user, $is_remember)) {
+//            return redirect('/posts');
+//        }
+//
+//        //渲染
+//        return \Redirect::back()->withInput()->withErrors('账号密码不匹配!');
     }
 
     //登出行为
