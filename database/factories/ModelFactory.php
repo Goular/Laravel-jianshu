@@ -32,3 +32,13 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'content' => $faker->paragraph(10)
     ];
 });
+
+//后台管理员自动工厂方法
+$factory->define(App\AdminUser::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'name' => $faker->name,
+        'password' => $password ?: $password = bcrypt('secret'),
+    ];
+});
