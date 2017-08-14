@@ -141,6 +141,8 @@ class PostController extends Controller
     //文章搜索
     public function search()
     {
+        $user = \Auth::user();
+
         //验证
         $this->validate(request(),[
             'query' => 'required'
@@ -151,6 +153,6 @@ class PostController extends Controller
         $posts = \App\Post::search($query)->paginate(2);
 
         //渲染
-        return view('post/search', compact('posts', 'query'));
+        return view('post/search', compact('user','posts', 'query'));
     }
 }
