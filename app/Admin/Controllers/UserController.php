@@ -21,6 +21,18 @@ class UserController extends Controller
     //创建操作
     public function store()
     {
+        //校验
+        $this->validate(request(), [
+            'name' => 'required|min:3|unique:admin_users',
+            'password' => 'required'
+        ]);
 
+        //逻辑
+        $name = request('name');
+        $password = bcrypt(request('password'));
+        $user = \App\AdminUser::create(compact('name', 'password'));
+
+        //渲染
+        return redirect('/admin/users');
     }
 }
