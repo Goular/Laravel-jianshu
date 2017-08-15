@@ -35,4 +35,14 @@ class UserController extends Controller
         //渲染
         return redirect('/admin/users');
     }
+
+    //用户角色页面
+    public function role(){
+
+    }
+
+    //储存用户角色
+    public function storeRole(){
+
+    }
 }
