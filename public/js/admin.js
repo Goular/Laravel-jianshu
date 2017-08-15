@@ -22,3 +22,32 @@ $(".post-audit").click(function (event) {
         }
     });
 });
+
+$(".resource-delete").click(function (event) {
+
+    if (window.confirm('确定执行删除的操作吗?') == false) {
+        return;
+    }
+
+    var target = $(event.target);
+    event.preventDefault();//阻止原来操作
+
+    var url = $(target).attr("delete-url");
+
+    $.ajax({
+        url: url,
+        method: 'POST',
+        data: {"_method": "DELETE"},
+        dataType: 'json',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (data) {
+            if (data.error != 0) {
+                window.alert(data.msg);
+                return;
+            }
+            window.location.reload();
+        }
+    });
+});
