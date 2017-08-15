@@ -43,7 +43,7 @@ class RoleController extends Controller
     }
 
     //存储角色权限行为
-    public function storePermission(AdminRole $role)
+    public function storePermission(\App\AdminRole $role)
     {
         $this->validate(request(), [
             'permissions' => 'required|array'
@@ -54,14 +54,14 @@ class RoleController extends Controller
 
         //执行需要增加的
         $addPermissions = $permissions->diff($myPermissions);
-        foreach ($addPermissions as $role) {
-            $role->assignRole($role);
+        foreach ($addPermissions as $permission) {
+            $role->grantPermission($permission);
         }
 
         //执行需要删除的
         $detachPermissions = $myPermissions->diff($permissions);
-        foreach ($detachPermissions as $role) {
-            $role->deleteRole($role);
+        foreach ($detachPermissions as $permission) {
+            $role->deletePermission($permission);
         }
 
         return back();

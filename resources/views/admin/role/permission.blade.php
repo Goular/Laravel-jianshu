@@ -12,7 +12,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <form action="/admin/roles/{{$role.id}}/permission" method="POST">
+                        <form action="/admin/roles/{{$role->id}}/permission" method="POST">
                             {{csrf_field()}}
                             <div class="form-group">
                                 @foreach($permissions as $permission)
