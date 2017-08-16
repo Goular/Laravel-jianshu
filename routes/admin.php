@@ -48,5 +48,11 @@ Route::group(['prefix' => 'admin'], function () {
             //话题模块
             Route::resource('topics', '\App\Admin\Controllers\TopicController', ['only' => ['index', 'create', 'store', 'destroy']]);
         });
+
+        Route::group(['middleware' => 'can:notice'], function () {
+            //话题模块
+            Route::resource('notices', '\App\Admin\Controllers\NoticeController', ['only' => ['index', 'create', 'store', 'destroy']]);
+        });
+
     });
 });
