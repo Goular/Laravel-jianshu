@@ -21,7 +21,7 @@ class PostController extends Controller
         //使用别名
 //        \Log::info("post_index", ['data' => "this is post index3!"]);
 
-        $user = \Auth::user();
+        //$user = \Auth::user();
 
         //预加载方法1:
         //$posts = Post::orderBy('created_at', 'desc')->withCount(['comments', 'zans'])->with('user')->paginate(6);
@@ -30,22 +30,20 @@ class PostController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->withCount(['comments', 'zans'])->paginate(6);
         $posts->load('user');
 
-        return view('post/index', compact('posts', 'user'));
+        return view('post/index', compact('posts'));
     }
 
     //详情页面
     public function show(Post $post)
     {
-        $user = \Auth::user();
         $post->load('comments');
-        return view('post/show', compact('post', 'user'));
+        return view('post/show', compact('post'));
     }
 
     //创建页面
     public function create()
     {
-        $user = \Auth::user();
-        return view('post/create', compact('user'));
+        return view('post/create');
     }
 
     //创建逻辑
@@ -148,8 +146,6 @@ class PostController extends Controller
     //文章搜索
     public function search()
     {
-        $user = \Auth::user();
-
         //验证
         $this->validate(request(), [
             'query' => 'required'
@@ -160,6 +156,6 @@ class PostController extends Controller
         $posts = \App\Post::search($query)->paginate(2);
 
         //渲染
-        return view('post/search', compact('user', 'posts', 'query'));
+        return view('post/search', compact('posts', 'query'));
     }
 }
