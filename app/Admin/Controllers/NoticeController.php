@@ -28,7 +28,11 @@ class NoticeController extends Controller
         $title = request('title');
         $content = request('content');
 
-        \App\Notice::create(compact('title', 'content'));
+        $notice = \App\Notice::create(compact('title', 'content'));
+
+        //分发队列任务到队列中
+        dispatch(new \App\Jobs\SendMessage($notice));
+
         return redirect('/admin/notices');
     }
 
