@@ -7,7 +7,7 @@ class NoticeController extends Controller
     {
         //获取当前用户
         $user = \Auth::user();
-        $notices = $user->notices;
+        $notices = $user->notices()->orderBy('created_at','desc')->get();
 
         return view('notice/index', compact('notices','user'));
     }
