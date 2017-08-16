@@ -182,6 +182,9 @@ return [
          */
         Laravel\Scout\ScoutServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+
+        //debugbar
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
